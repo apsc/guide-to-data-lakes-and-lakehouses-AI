@@ -5,6 +5,8 @@ SELECT
     s.sale_date,
     s.sale_price,
     s.payment_method,
+    c.first_name as customer_name,
+    v.model_name as vehicle_model
     
 FROM {{ source('silver', 'sales') }} AT branch {{ nessie_branch }} s
 LEFT JOIN {{ source('silver', 'customers') }} AT branch {{ nessie_branch }} c ON c.id = s.customer_id
